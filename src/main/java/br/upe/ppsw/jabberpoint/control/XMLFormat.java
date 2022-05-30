@@ -276,4 +276,7 @@ public final class XMLFormat implements IFilePresentationFormat {
 			xmlFile.println("</item>");
 		}
 	}
+	public String getExtension() {
+		return "xml";
+	}
 }

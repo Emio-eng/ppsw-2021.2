@@ -30,7 +30,6 @@ import javax.swing.JOptionPane;
 
 import org.springframework.util.NumberUtils;
 
-import br.upe.ppsw.jabberpoint.JabberPointApplication;
 import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.PresentationDefault;
 import br.upe.ppsw.jabberpoint.presentation.viewer.PresentationViewer;
@@ -40,6 +39,9 @@ import br.upe.ppsw.jabberpoint.presentation.viewer.PresentationViewer;
  * superior de uma {@link Presentation}.
  */
 public class MenuController extends MenuBar {
+	
+	public FileManager filemanager = new FileManager();
+
 
 	private static final long serialVersionUID = 227L;
 
@@ -85,7 +87,8 @@ public class MenuController extends MenuBar {
 
 		menuItem = createMenuItem(OPEN);
 		menuItem.addActionListener(actionEvent -> {
-			parent.loadPresentation(JabberPointApplication.getFileManager().load(TESTFILE));
+			parent.loadPresentation(filemanager.load(TESTFILE));
+;
 		});
 
 		fileMenu.add(menuItem);
@@ -100,7 +103,7 @@ public class MenuController extends MenuBar {
 		menuItem = createMenuItem(SAVE);
 		menuItem.addActionListener(actionEvent -> {
 			String fileName = JOptionPane.showInputDialog("Enter the file name", "demo");
-			JabberPointApplication.getFileManager().save(parent.currentPresentation(), SAVEFILE + fileName);
+			filemanager.save(parent.currentPresentation(), SAVEFILE + fileName);
 			JOptionPane.showMessageDialog(parent,"Your presentation was saved in src/main/resources directory");
 		});
 
